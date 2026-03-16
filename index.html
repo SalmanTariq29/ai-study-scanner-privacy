@@ -1,0 +1,790 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Privacy Policy — AI Study Scanner</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ── Reset & base ─────────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --primary:       #6366F1;
+      --primary-light: #EEF2FF;
+      --primary-dim:   #C7D2FE;
+      --text-heading:  #0F172A;
+      --text-body:     #334155;
+      --text-muted:    #64748B;
+      --bg:            #F8FAFC;
+      --surface:       #FFFFFF;
+      --border:        #E2E8F0;
+      --radius-sm:     6px;
+      --radius-md:     12px;
+      --radius-lg:     20px;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --primary:       #818CF8;
+        --primary-light: #1E1B4B;
+        --primary-dim:   #3730A3;
+        --text-heading:  #F1F5F9;
+        --text-body:     #CBD5E1;
+        --text-muted:    #94A3B8;
+        --bg:            #0F172A;
+        --surface:       #1E293B;
+        --border:        #334155;
+      }
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background:  var(--bg);
+      color:       var(--text-body);
+      line-height: 1.7;
+      font-size:   16px;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── Layout ───────────────────────────────────────────────────── */
+    .wrapper {
+      max-width: 740px;
+      margin:    0 auto;
+      padding:   0 24px 80px;
+    }
+
+    /* ── Header ───────────────────────────────────────────────────── */
+    header {
+      padding:         56px 0 48px;
+      border-bottom:   1px solid var(--border);
+      margin-bottom:   48px;
+    }
+
+    .app-badge {
+      display:         inline-flex;
+      align-items:     center;
+      gap:             10px;
+      background:      var(--primary-light);
+      border:          1px solid var(--primary-dim);
+      border-radius:   var(--radius-lg);
+      padding:         8px 16px 8px 10px;
+      margin-bottom:   24px;
+    }
+
+    .app-icon {
+      width:           36px;
+      height:          36px;
+      background:      var(--primary);
+      border-radius:   10px;
+      display:         flex;
+      align-items:     center;
+      justify-content: center;
+      flex-shrink:     0;
+    }
+
+    .app-icon svg {
+      width:  20px;
+      height: 20px;
+      fill:   white;
+    }
+
+    .app-badge span {
+      font-size:   13px;
+      font-weight: 600;
+      color:       var(--primary);
+      letter-spacing: 0.02em;
+    }
+
+    h1 {
+      font-family:   'DM Serif Display', serif;
+      font-size:     clamp(2rem, 5vw, 2.75rem);
+      color:         var(--text-heading);
+      line-height:   1.15;
+      margin-bottom: 16px;
+      letter-spacing: -0.02em;
+    }
+
+    .meta {
+      display:     flex;
+      gap:         20px;
+      flex-wrap:   wrap;
+      font-size:   14px;
+      color:       var(--text-muted);
+    }
+
+    .meta-item {
+      display:     flex;
+      align-items: center;
+      gap:         6px;
+    }
+
+    .meta-dot {
+      width:       6px;
+      height:      6px;
+      border-radius: 50%;
+      background:  var(--primary);
+      flex-shrink: 0;
+    }
+
+    /* ── TOC ──────────────────────────────────────────────────────── */
+    .toc {
+      background:    var(--surface);
+      border:        1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding:       24px 28px;
+      margin-bottom: 48px;
+    }
+
+    .toc-title {
+      font-size:     12px;
+      font-weight:   700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color:         var(--text-muted);
+      margin-bottom: 14px;
+    }
+
+    .toc ol {
+      list-style:  none;
+      counter-reset: toc;
+      display:     grid;
+      gap:         6px;
+    }
+
+    .toc ol li {
+      counter-increment: toc;
+      display:     flex;
+      align-items: baseline;
+      gap:         10px;
+    }
+
+    .toc ol li::before {
+      content:     counter(toc, decimal-leading-zero);
+      font-size:   11px;
+      font-weight: 700;
+      color:       var(--primary);
+      min-width:   24px;
+      flex-shrink: 0;
+    }
+
+    .toc a {
+      color:           var(--text-body);
+      text-decoration: none;
+      font-size:       14px;
+      font-weight:     500;
+      transition:      color 0.15s;
+    }
+
+    .toc a:hover { color: var(--primary); }
+
+    /* ── Sections ─────────────────────────────────────────────────── */
+    section {
+      margin-bottom: 48px;
+      scroll-margin-top: 24px;
+    }
+
+    .section-number {
+      font-size:     11px;
+      font-weight:   700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color:         var(--primary);
+      margin-bottom: 8px;
+    }
+
+    h2 {
+      font-family:   'DM Serif Display', serif;
+      font-size:     1.5rem;
+      color:         var(--text-heading);
+      line-height:   1.25;
+      margin-bottom: 16px;
+      letter-spacing: -0.01em;
+    }
+
+    p {
+      margin-bottom: 14px;
+      color:         var(--text-body);
+    }
+
+    p:last-child { margin-bottom: 0; }
+
+    /* ── Info cards ───────────────────────────────────────────────── */
+    .card {
+      background:    var(--surface);
+      border:        1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding:       20px 24px;
+      margin:        20px 0;
+    }
+
+    .card-title {
+      font-size:     13px;
+      font-weight:   700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color:         var(--text-muted);
+      margin-bottom: 12px;
+    }
+
+    /* ── Data table ───────────────────────────────────────────────── */
+    .data-table {
+      width:         100%;
+      border-collapse: collapse;
+      font-size:     14px;
+      margin:        20px 0;
+    }
+
+    .data-table th {
+      text-align:    left;
+      padding:       10px 14px;
+      background:    var(--primary-light);
+      color:         var(--primary);
+      font-weight:   700;
+      font-size:     12px;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+
+    .data-table th:first-child { border-radius: var(--radius-sm) 0 0 var(--radius-sm); }
+    .data-table th:last-child  { border-radius: 0 var(--radius-sm) var(--radius-sm) 0; }
+
+    .data-table td {
+      padding:       10px 14px;
+      border-bottom: 1px solid var(--border);
+      color:         var(--text-body);
+      vertical-align: top;
+    }
+
+    .data-table tr:last-child td { border-bottom: none; }
+
+    .data-table td:first-child {
+      font-weight: 600;
+      color:       var(--text-heading);
+      white-space: nowrap;
+    }
+
+    /* ── Tag pills ────────────────────────────────────────────────── */
+    .tag {
+      display:       inline-block;
+      background:    var(--primary-light);
+      color:         var(--primary);
+      border:        1px solid var(--primary-dim);
+      border-radius: 99px;
+      padding:       2px 10px;
+      font-size:     12px;
+      font-weight:   600;
+    }
+
+    .tag.green {
+      background: #DCFCE7;
+      color:      #166534;
+      border-color: #BBF7D0;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      .tag.green {
+        background: #14532D;
+        color:      #4ADE80;
+        border-color: #166534;
+      }
+    }
+
+    /* ── Highlight box ────────────────────────────────────────────── */
+    .highlight {
+      background:    var(--primary-light);
+      border-left:   3px solid var(--primary);
+      border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+      padding:       16px 20px;
+      margin:        20px 0;
+      font-size:     14px;
+      color:         var(--text-body);
+    }
+
+    /* ── Contact box ──────────────────────────────────────────────── */
+    .contact-box {
+      background:    var(--surface);
+      border:        2px solid var(--primary-dim);
+      border-radius: var(--radius-lg);
+      padding:       28px 32px;
+      text-align:    center;
+      margin-top:    20px;
+    }
+
+    .contact-box h3 {
+      font-family:   'DM Serif Display', serif;
+      font-size:     1.25rem;
+      color:         var(--text-heading);
+      margin-bottom: 8px;
+    }
+
+    .contact-box p {
+      font-size:   14px;
+      color:       var(--text-muted);
+      margin-bottom: 20px;
+    }
+
+    .contact-btn {
+      display:         inline-flex;
+      align-items:     center;
+      gap:             8px;
+      background:      var(--primary);
+      color:           white;
+      text-decoration: none;
+      font-weight:     600;
+      font-size:       14px;
+      padding:         12px 24px;
+      border-radius:   var(--radius-md);
+      transition:      opacity 0.15s, transform 0.15s;
+    }
+
+    .contact-btn:hover {
+      opacity:   0.9;
+      transform: translateY(-1px);
+    }
+
+    /* ── Footer ───────────────────────────────────────────────────── */
+    footer {
+      border-top:  1px solid var(--border);
+      padding-top: 32px;
+      margin-top:  64px;
+      display:     flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap:   wrap;
+      gap:         12px;
+    }
+
+    footer p {
+      font-size:   13px;
+      color:       var(--text-muted);
+      margin:      0;
+    }
+
+    /* ── Responsive ───────────────────────────────────────────────── */
+    @media (max-width: 600px) {
+      .data-table td:first-child { white-space: normal; }
+      footer { flex-direction: column; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrapper">
+
+    <!-- ── Header ──────────────────────────────────────────────────── -->
+    <header>
+      <div class="app-badge">
+        <div class="app-icon">
+          <!-- Book/study icon -->
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+          </svg>
+        </div>
+        <span>AI Study Scanner</span>
+      </div>
+
+      <h1>Privacy Policy</h1>
+
+      <div class="meta">
+        <div class="meta-item">
+          <div class="meta-dot"></div>
+          <span>Effective date: January 1, 2025</span>
+        </div>
+        <div class="meta-item">
+          <div class="meta-dot"></div>
+          <span>Last updated: January 1, 2025</span>
+        </div>
+      </div>
+    </header>
+
+    <!-- ── Table of contents ────────────────────────────────────────── -->
+    <nav class="toc">
+      <div class="toc-title">Contents</div>
+      <ol>
+        <li><a href="#overview">Overview</a></li>
+        <li><a href="#data-collected">Data We Collect</a></li>
+        <li><a href="#how-we-use">How We Use Your Data</a></li>
+        <li><a href="#third-parties">Third-Party Services</a></li>
+        <li><a href="#data-storage">Data Storage & Security</a></li>
+        <li><a href="#your-rights">Your Rights</a></li>
+        <li><a href="#children">Children's Privacy</a></li>
+        <li><a href="#changes">Changes to This Policy</a></li>
+        <li><a href="#contact">Contact Us</a></li>
+      </ol>
+    </nav>
+
+    <!-- ── 1. Overview ──────────────────────────────────────────────── -->
+    <section id="overview">
+      <div class="section-number">01</div>
+      <h2>Overview</h2>
+      <p>
+        AI Study Scanner ("we", "us", or "our") is a mobile application that helps students
+        scan handwritten notes, generate summaries, create quizzes, and build flashcards using
+        artificial intelligence.
+      </p>
+      <p>
+        This Privacy Policy explains what data we collect, why we collect it, and how we
+        protect it. We are committed to being transparent — we collect only what is necessary
+        to provide and improve the service.
+      </p>
+      <div class="highlight">
+        <strong>Short version:</strong> We collect your account info, the notes you scan,
+        and basic usage data. We never sell your personal data to anyone. Guest users can
+        use the app without creating an account, and their data stays on-device only.
+      </div>
+    </section>
+
+    <!-- ── 2. Data collected ─────────────────────────────────────────── -->
+    <section id="data-collected">
+      <div class="section-number">02</div>
+      <h2>Data We Collect</h2>
+
+      <div class="card">
+        <div class="card-title">Account Data</div>
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>Data</th>
+              <th>Source</th>
+              <th>Required?</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Name &amp; email address</td>
+              <td>Google Sign-In</td>
+              <td><span class="tag">Google users only</span></td>
+            </tr>
+            <tr>
+              <td>Profile photo URL</td>
+              <td>Google Sign-In</td>
+              <td><span class="tag">Google users only</span></td>
+            </tr>
+            <tr>
+              <td>Anonymous user ID</td>
+              <td>Firebase Auth</td>
+              <td><span class="tag">Guest users</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="card">
+        <div class="card-title">Notes &amp; Study Content</div>
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>Data</th>
+              <th>Where stored</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Scanned note text (OCR output)</td>
+              <td>On-device (Hive) + Firestore (Google users only)</td>
+            </tr>
+            <tr>
+              <td>AI-generated summaries</td>
+              <td>On-device (Hive) + Firestore (Google users only)</td>
+            </tr>
+            <tr>
+              <td>Quiz questions &amp; answers</td>
+              <td>On-device (Hive) + Firestore (Google users only)</td>
+            </tr>
+            <tr>
+              <td>Flashcard content</td>
+              <td>On-device (Hive) + Firestore (Google users only)</td>
+            </tr>
+          </tbody>
+        </table>
+        <p style="font-size:13px; color: var(--text-muted); margin-top:12px; margin-bottom:0;">
+          Guest users' notes are stored on-device only and are permanently deleted when the app
+          is uninstalled or guest mode is exited.
+        </p>
+      </div>
+
+      <div class="card">
+        <div class="card-title">Usage &amp; Technical Data</div>
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>Data</th>
+              <th>Purpose</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Daily upload count</td>
+              <td>Enforce free tier limits</td>
+            </tr>
+            <tr>
+              <td>Study streak &amp; progress</td>
+              <td>Progress tracking features</td>
+            </tr>
+            <tr>
+              <td>Notification preferences</td>
+              <td>Deliver study reminders</td>
+            </tr>
+            <tr>
+              <td>Theme preference</td>
+              <td>Remember your display settings</td>
+            </tr>
+            <tr>
+              <td>Device timezone</td>
+              <td>Schedule notifications at correct local time</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p>
+        <strong>Camera &amp; Images:</strong> The app requests camera permission solely to
+        scan notes. Images captured are processed on-device using Google ML Kit for text
+        recognition and are never uploaded to our servers. The original image is discarded
+        after OCR processing is complete.
+      </p>
+    </section>
+
+    <!-- ── 3. How we use ─────────────────────────────────────────────── -->
+    <section id="how-we-use">
+      <div class="section-number">03</div>
+      <h2>How We Use Your Data</h2>
+      <p>We use the data we collect for the following purposes only:</p>
+
+      <div class="card">
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>Purpose</th>
+              <th>Legal Basis</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Provide and operate the app</td>
+              <td><span class="tag green">Contract</span></td>
+            </tr>
+            <tr>
+              <td>Sync notes across your devices</td>
+              <td><span class="tag green">Contract</span></td>
+            </tr>
+            <tr>
+              <td>Send study reminders (if enabled)</td>
+              <td><span class="tag green">Consent</span></td>
+            </tr>
+            <tr>
+              <td>Enforce free tier upload limits</td>
+              <td><span class="tag green">Legitimate interest</span></td>
+            </tr>
+            <tr>
+              <td>Show advertisements via AdMob</td>
+              <td><span class="tag green">Legitimate interest</span></td>
+            </tr>
+            <tr>
+              <td>Improve app performance and fix bugs</td>
+              <td><span class="tag green">Legitimate interest</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p>
+        We <strong>do not</strong> use your notes or study content to train AI models.
+        Text extracted from your notes is sent to the Google Gemini API solely to generate
+        the summary, quiz, or flashcards you requested, and is not retained by us afterward.
+      </p>
+    </section>
+
+    <!-- ── 4. Third parties ──────────────────────────────────────────── -->
+    <section id="third-parties">
+      <div class="section-number">04</div>
+      <h2>Third-Party Services</h2>
+      <p>
+        We use the following third-party services. Each has its own privacy policy which
+        governs how they handle data.
+      </p>
+
+      <div class="card">
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>Service</th>
+              <th>Provider</th>
+              <th>Purpose</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Firebase Authentication</td>
+              <td>Google LLC</td>
+              <td>User sign-in and identity</td>
+            </tr>
+            <tr>
+              <td>Cloud Firestore</td>
+              <td>Google LLC</td>
+              <td>Cloud storage of notes and progress</td>
+            </tr>
+            <tr>
+              <td>Google Sign-In</td>
+              <td>Google LLC</td>
+              <td>OAuth authentication</td>
+            </tr>
+            <tr>
+              <td>Gemini API</td>
+              <td>Google LLC</td>
+              <td>AI summary, quiz, and flashcard generation</td>
+            </tr>
+            <tr>
+              <td>Google ML Kit</td>
+              <td>Google LLC</td>
+              <td>On-device text recognition (OCR)</td>
+            </tr>
+            <tr>
+              <td>Google AdMob</td>
+              <td>Google LLC</td>
+              <td>Display advertisements to free users</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p>
+        All Google services used in this app are governed by the
+        <a href="https://policies.google.com/privacy" style="color: var(--primary);">Google Privacy Policy</a>.
+        We do not share your data with any other third parties.
+      </p>
+    </section>
+
+    <!-- ── 5. Data storage ───────────────────────────────────────────── -->
+    <section id="data-storage">
+      <div class="section-number">05</div>
+      <h2>Data Storage &amp; Security</h2>
+      <p>
+        <strong>On-device storage:</strong> Notes, preferences, and cached data are stored
+        locally using Hive, a lightweight database. This data remains on your device and is
+        not accessible to us.
+      </p>
+      <p>
+        <strong>Cloud storage:</strong> If you sign in with Google, your notes and progress
+        are synced to Cloud Firestore. Data is stored in Google's secure infrastructure and
+        protected by Firebase Security Rules that ensure only you can access your own data.
+      </p>
+      <p>
+        <strong>Data retention:</strong> Your cloud data is retained as long as your account
+        is active. If you sign out and delete the app, on-device data is removed automatically.
+        To request deletion of your cloud data, contact us at the email below.
+      </p>
+      <div class="highlight">
+        We do not store your note images. Camera images are processed on-device and
+        immediately discarded after OCR text extraction is complete.
+      </div>
+    </section>
+
+    <!-- ── 6. Your rights ────────────────────────────────────────────── -->
+    <section id="your-rights">
+      <div class="section-number">06</div>
+      <h2>Your Rights</h2>
+      <p>You have the following rights regarding your personal data:</p>
+
+      <div class="card">
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>Right</th>
+              <th>How to exercise it</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Access your data</td>
+              <td>Contact us by email</td>
+            </tr>
+            <tr>
+              <td>Delete your data</td>
+              <td>Contact us by email or uninstall the app</td>
+            </tr>
+            <tr>
+              <td>Export your data</td>
+              <td>Contact us by email</td>
+            </tr>
+            <tr>
+              <td>Opt out of notifications</td>
+              <td>Settings → Notifications inside the app</td>
+            </tr>
+            <tr>
+              <td>Use without an account</td>
+              <td>Choose "Continue as Guest" on the sign-in screen</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- ── 7. Children ───────────────────────────────────────────────── -->
+    <section id="children">
+      <div class="section-number">07</div>
+      <h2>Children's Privacy</h2>
+      <p>
+        AI Study Scanner is designed for students of all ages including children under 13.
+        We do not knowingly collect personal information from children under 13 beyond what
+        is required to provide the service.
+      </p>
+      <p>
+        If you are a parent or guardian and believe your child has provided personal
+        information to us, please contact us and we will delete it promptly.
+      </p>
+    </section>
+
+    <!-- ── 8. Changes ────────────────────────────────────────────────── -->
+    <section id="changes">
+      <div class="section-number">08</div>
+      <h2>Changes to This Policy</h2>
+      <p>
+        We may update this Privacy Policy from time to time. When we do, we will update the
+        "Last updated" date at the top of this page. For significant changes, we will notify
+        you through the app.
+      </p>
+      <p>
+        Continued use of the app after changes are posted constitutes your acceptance of
+        the updated policy.
+      </p>
+    </section>
+
+    <!-- ── 9. Contact ────────────────────────────────────────────────── -->
+    <section id="contact">
+      <div class="section-number">09</div>
+      <h2>Contact Us</h2>
+      <p>
+        If you have questions about this Privacy Policy, want to exercise your data rights,
+        or need to report a privacy concern, please get in touch.
+      </p>
+
+      <div class="contact-box">
+        <h3>Get in touch</h3>
+        <p>We aim to respond to all privacy inquiries within 48 hours.</p>
+        <a href="mailto:YOUR_EMAIL@gmail.com?subject=Privacy%20Inquiry%20-%20AI%20Study%20Scanner"
+           class="contact-btn">
+          <!-- Email icon -->
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="2" y="4" width="20" height="16" rx="2"/>
+            <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
+          </svg>
+          YOUR_EMAIL@gmail.com
+        </a>
+      </div>
+    </section>
+
+    <!-- ── Footer ────────────────────────────────────────────────────── -->
+    <footer>
+      <p>© 2025 AI Study Scanner. All rights reserved.</p>
+      <p>Made with ❤️ for students</p>
+    </footer>
+
+  </div>
+</body>
+</html>
