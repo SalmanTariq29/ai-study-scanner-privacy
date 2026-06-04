@@ -23,6 +23,9 @@
       --accent-mid:   #C7C4F6;
       --green:        #059669;
       --green-tint:   #ECFDF5;
+      --amber:        #D97706;
+      --amber-tint:   #FFFBEB;
+      --amber-mid:    #FCD34D;
       --radius:       10px;
       --radius-lg:    18px;
     }
@@ -40,6 +43,9 @@
         --accent-mid:  #2A2860;
         --green:       #34D399;
         --green-tint:  #022C22;
+        --amber:       #FBBF24;
+        --amber-tint:  #1C1500;
+        --amber-mid:   #78450A;
       }
     }
 
@@ -54,7 +60,6 @@
       -webkit-font-smoothing: antialiased;
     }
 
-    /* ── Sidebar layout ─── */
     .layout {
       display:   flex;
       max-width: 1100px;
@@ -63,7 +68,6 @@
       gap:       72px;
     }
 
-    /* ── Sticky TOC sidebar ─── */
     .sidebar {
       width:      220px;
       flex-shrink: 0;
@@ -116,14 +120,12 @@
       min-width:   18px;
     }
 
-    /* ── Main content ─── */
     .main {
       flex:       1;
       min-width:  0;
       padding:    72px 0 100px;
     }
 
-    /* ── Header ─── */
     .page-header {
       padding-bottom: 52px;
       border-bottom:  1px solid var(--rule);
@@ -194,7 +196,6 @@
       background:    var(--accent);
     }
 
-    /* ── Sections ─── */
     section {
       margin-bottom:     56px;
       scroll-margin-top: 32px;
@@ -228,7 +229,6 @@
 
     p strong { color: var(--ink); font-weight: 600; }
 
-    /* ── Card ─── */
     .card {
       background:    var(--surface);
       border:        1px solid var(--rule);
@@ -248,7 +248,6 @@
       border-bottom:   1px solid var(--rule);
     }
 
-    /* ── Table ─── */
     table {
       width:           100%;
       border-collapse: collapse;
@@ -280,7 +279,6 @@
       color:       var(--ink);
     }
 
-    /* ── Badge ─── */
     .badge {
       display:       inline-block;
       padding:       2px 9px;
@@ -298,7 +296,12 @@
       border:     1px solid color-mix(in srgb, var(--green) 30%, transparent);
     }
 
-    /* ── Note box ─── */
+    .badge.amber {
+      background: var(--amber-tint);
+      color:      var(--amber);
+      border:     1px solid color-mix(in srgb, var(--amber) 40%, transparent);
+    }
+
     .note {
       display:       flex;
       gap:           12px;
@@ -313,15 +316,21 @@
       line-height:   1.65;
     }
 
-    .note-icon {
-      width:          18px;
-      height:         18px;
-      flex-shrink:    0;
-      margin-top:     1px;
-      color:          var(--accent);
+    .note.amber {
+      background:   var(--amber-tint);
+      border-color: color-mix(in srgb, var(--amber) 40%, transparent);
     }
 
-    /* ── Footer note ─── */
+    .note.amber .note-icon { color: var(--amber); }
+
+    .note-icon {
+      width:       18px;
+      height:      18px;
+      flex-shrink: 0;
+      margin-top:  1px;
+      color:       var(--accent);
+    }
+
     .card-foot {
       padding:     12px 18px;
       font-size:   12px;
@@ -330,7 +339,6 @@
       line-height: 1.55;
     }
 
-    /* ── Contact ─── */
     .contact-box {
       background:    var(--surface);
       border:        1px solid var(--rule);
@@ -380,7 +388,6 @@
       fill:   none;
     }
 
-    /* ── Page footer ─── */
     footer {
       border-top:  1px solid var(--rule);
       padding-top: 28px;
@@ -398,14 +405,12 @@
       margin:    0;
     }
 
-    /* ── Divider ─── */
     hr.section-rule {
       border:        none;
       border-top:    1px solid var(--rule);
       margin-bottom: 56px;
     }
 
-    /* ── Responsive ─── */
     @media (max-width: 768px) {
       .layout  { flex-direction: column; gap: 0; padding: 0 20px; }
       .sidebar { width: 100%; padding: 40px 0 0; }
@@ -419,7 +424,6 @@
       .contact-box { padding: 24px 20px; }
     }
 
-    /* ── Fade-in ─── */
     @keyframes fade-up {
       from { opacity: 0; transform: translateY(14px); }
       to   { opacity: 1; transform: translateY(0); }
@@ -473,11 +477,11 @@
         <div class="page-meta">
           <div class="meta-chip">
             <div class="meta-chip-dot"></div>
-            Effective March 15, 2026
+            Effective April 18, 2026
           </div>
           <div class="meta-chip">
             <div class="meta-chip-dot"></div>
-            Last updated March 15, 2026
+            Last updated June 4, 2026
           </div>
         </div>
       </div>
@@ -500,7 +504,7 @@
           <svg class="note-icon" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
             <circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/>
           </svg>
-          <span><strong>Short version:</strong> We collect your account info, the notes you scan, and basic usage data. We never sell your personal data to anyone.</span>
+          <span><strong>Short version:</strong> We collect your account info, the notes you scan, and basic usage data. Camera images are sent to Google Cloud Vision API for text recognition and are not stored by us. PDF files are processed entirely on-device. We never sell your personal data to anyone.</span>
         </div>
       </section>
 
@@ -532,7 +536,6 @@
                 <td>Google Sign-In</td>
                 <td><span class="badge">Google users</span></td>
               </tr>
-
             </tbody>
           </table>
         </div>
@@ -565,7 +568,6 @@
               </tr>
             </tbody>
           </table>
-
         </div>
 
         <div class="card">
@@ -603,11 +605,36 @@
         </div>
 
         <p>
-          <strong>Camera &amp; Images:</strong> The app requests camera permission solely to
-          scan notes. Images are processed on-device using Google ML Kit for text recognition
-          and are never uploaded to our servers. The original image is discarded immediately
-          after text extraction is complete.
+          <strong>Camera &amp; Images (Google Cloud Vision API):</strong> When you scan a note
+          using your camera, the captured image is sent securely to the Google Cloud Vision API
+          for text recognition (OCR). The image is transmitted over HTTPS and is used solely to
+          extract the text from your photo. We do not store the image on our servers, and the
+          original image is discarded on your device immediately after text extraction is complete.
+          Google's handling of this data is governed by the
+          <a href="https://policies.google.com/privacy" style="color: var(--accent); text-decoration: none; font-weight: 500;">Google Privacy Policy</a>
+          and the Google Cloud Data Processing Addendum.
         </p>
+
+        <div class="note amber">
+          <svg class="note-icon" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/>
+            <line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/>
+          </svg>
+          <span><strong>Note:</strong> Camera images are transmitted to Google Cloud Vision API servers for OCR processing. They are not stored by us and are not used for any purpose beyond extracting text from your scanned notes.</span>
+        </div>
+
+        <p>
+          <strong>PDF Files (On-Device OCR):</strong> When you import a PDF, text recognition
+          is performed entirely on your device using on-device OCR. PDF file contents are never
+          uploaded to our servers or any third-party service.
+        </p>
+
+        <div class="note">
+          <svg class="note-icon" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+          </svg>
+          <span>PDF processing stays entirely on your device — no PDF data ever leaves your phone.</span>
+        </div>
       </section>
 
       <hr class="section-rule">
@@ -659,6 +686,9 @@
           We <strong>do not</strong> use your notes or study content to train AI models.
           Text extracted from your notes is sent to the Google Gemini API solely to generate
           the summary, quiz, or flashcards you requested, and is not retained by us afterward.
+          Camera images are sent to Google Cloud Vision API only for OCR text extraction and
+          are not stored or used for any other purpose. PDF files are processed entirely
+          on-device and never transmitted externally.
         </p>
       </section>
 
@@ -680,6 +710,7 @@
                 <th>Service</th>
                 <th>Provider</th>
                 <th>Purpose</th>
+                <th>Data sent</th>
               </tr>
             </thead>
             <tbody>
@@ -687,34 +718,43 @@
                 <td>Firebase Authentication</td>
                 <td>Google LLC</td>
                 <td>User sign-in and identity</td>
+                <td><span class="badge">Account info</span></td>
               </tr>
               <tr>
                 <td>Cloud Firestore</td>
                 <td>Google LLC</td>
                 <td>Cloud storage of notes and progress</td>
+                <td><span class="badge">Note text &amp; metadata</span></td>
               </tr>
               <tr>
                 <td>Google Sign-In</td>
                 <td>Google LLC</td>
                 <td>OAuth authentication</td>
+                <td><span class="badge">Account info</span></td>
+              </tr>
+              <tr>
+                <td>Google Cloud Vision API</td>
+                <td>Google LLC</td>
+                <td>Camera image OCR — text recognition from photos</td>
+                <td><span class="badge amber">Camera images</span></td>
               </tr>
               <tr>
                 <td>Gemini API</td>
                 <td>Google LLC</td>
                 <td>AI summary, quiz, and flashcard generation</td>
-              </tr>
-              <tr>
-                <td>Google ML Kit</td>
-                <td>Google LLC</td>
-                <td>On-device text recognition (OCR)</td>
+                <td><span class="badge">Extracted text only</span></td>
               </tr>
               <tr>
                 <td>Firebase Crashlytics</td>
                 <td>Google LLC</td>
                 <td>Crash reporting and stability monitoring</td>
+                <td><span class="badge">Crash diagnostics</span></td>
               </tr>
             </tbody>
           </table>
+          <div class="card-foot">
+            ⚠️ Camera images are transmitted to Google Cloud Vision API for OCR processing. PDF files are processed on-device only and are never sent to any external service.
+          </div>
         </div>
 
         <p>
@@ -742,17 +782,27 @@
           by security rules that ensure only you can read or write your own data.
         </p>
         <p>
+          <strong>Camera images:</strong> Images captured by your camera are transmitted
+          securely to Google Cloud Vision API over HTTPS for text recognition. We do not store
+          these images on our servers. The original image is discarded on your device immediately
+          after text extraction is complete.
+        </p>
+        <p>
+          <strong>PDF files:</strong> PDFs are processed entirely on-device. No PDF content
+          is ever transmitted to our servers or any external service.
+        </p>
+        <p>
           <strong>Data retention:</strong> Your cloud data is retained for as long as your
           account is active. You can permanently delete your account and all associated data
-          by contact us via email.
-          On-device data is removed automatically when you uninstall the app.
+          by contacting us via email. On-device data is removed automatically when you
+          uninstall the app.
         </p>
 
         <div class="note">
           <svg class="note-icon" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
             <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
           </svg>
-          <span>We never store your note images. Camera images are processed entirely on-device and discarded immediately after text extraction is complete.</span>
+          <span>We never store your note images on our servers. Camera images are sent to Google Cloud Vision API for OCR only, then discarded. PDF files never leave your device.</span>
         </div>
       </section>
 
